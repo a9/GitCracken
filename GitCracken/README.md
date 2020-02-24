@@ -2,13 +2,13 @@
 
 GitKraken utils for non-commercial use
 
-Working on `GNU/Linux`, `Windows` and `macOS`!
+Working on `GNU/Linux` (without `snap`), `Windows` and `macOS`!
 
 > WARNING! On `macOS` you should patch `GitKraken` only after first launch and full program closing!
 
 ## Requirements
 
-- `Node.js` v10 LTS or later
+- `Node.js` v12 LTS or later
 - `yarn`
 
 ## Usage
@@ -27,23 +27,23 @@ $ gitcracken patcher [options] [actions...]
 
 > If `actions` is empty, will be used `auto` mode (ideal for beginners)
 
-| Action   | Description                           |
-|----------|---------------------------------------|
-| `backup` | Backup `app.asar` file                |
-| `unpack` | Unpack `app.asar` file into directory |
-| `patch`  | Patch directory                       |
-| `pack`   | Pack directory to `app.asar`          |
-| `remove` | Remove directory                      |
+| Action   | Description                                 |
+|----------|---------------------------------------------|
+| `backup` | Backup `app.asar` file                      |
+| `unpack` | Unpack `app.asar` file into `app` directory |
+| `patch`  | Patch `app` directory                       |
+| `pack`   | Pack `app` directory to `app.asar` file     |
+| `remove` | Remove `app` directory                      |
 
-| Option      | Description (if not defined, will be used `auto` value) |
-|-------------|---------------------------------------------------------|
-| `--asar`    | Path to `app.asar` file                                 |
-| `--dir`     | Path to directory                                       |
-| `--feature` | Patcher feature (from [patches](patches) dir)           |
+| Option            | Description (if not defined, will be used `auto` value)         |
+|-------------------|-----------------------------------------------------------------|
+| `-a`, `--asar`    | Path to `app.asar` file                                         |
+| `-d`, `--dir`     | Path to `app` directory                                         |
+| `-f`, `--feature` | Patcher feature (from [patches](patches) dir without extension) |
 
-> You can invoke `--feature` several times to apply all patches!
+> You can invoke `-f`, `--feature` several times to apply all patches!
 
-#### Examples
+### Examples
 
 `Auto` patch installed `GitKraken` (maybe require `sudo` privileges on `GNU/Linux`)
 
@@ -61,4 +61,12 @@ Use custom `actions` (`backup`, `unpack` and `patch`)
 
 ```bash
 $ gitcracken patcher backup unpack patch
+```
+
+## Disable Automatic Update
+
+Add this content to your `hosts` file:
+
+```text
+0.0.0.0 release.gitkraken.com
 ```
